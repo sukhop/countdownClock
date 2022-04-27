@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            color: #fff;
+            background-color: black;
+        }
+        .clock .count {
+            font-size: 5rem;
+            font-weight: 500;
+        }
+        .clock div {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+    </style>
+
+    <title>Countdown Clock</title>
+</head>
+<body>
+
+    <div class="clock">
+        <div><span class="count yrs">00</span><span>YRS</span></div>
+        <div><span class="count day">00</span><span>DAY</span></div>
+        <div><span class="count hrs">00</span><span>HRS</span></div>
+        <div><span class="count min">00</span><span>MIN</span></div>
+        <div><span class="count sec">00</span><span>SEC</span></div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        let clock = setInterval(function time (){
+            let date = new Date();
+            let yrs = date.getFullYear().toString().slice(-2);
+            let day = date.getDate();
+            let hrs = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+
+
+            if(day < 10) {
+                day = '0' + day;
+            }
+            if(hrs < 10) {
+                hrs = '0' + hrs;
+            }
+            if(min < 10) {
+                min = '0' + min;
+            }
+            if(sec < 10) {
+                sec = '0' + sec;
+            }
+
+            $(".yrs").text(yrs);
+            $(".day").text(day);
+            $(".hrs").text(hrs);
+            $(".min").text(min);
+            $(".sec").text(sec);
+        },1000);
+        time();
+    </script>
+</body>
+</html>
